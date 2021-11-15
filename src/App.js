@@ -14,7 +14,7 @@ import Favorites from './pages/Favorites'
 
 class App extends Component {
   render() {
-    // 74ff4d5b18f55c304a239fadf716fe2f
+    
     return (
       <BrowserRouter>
         <ul className="nav">
