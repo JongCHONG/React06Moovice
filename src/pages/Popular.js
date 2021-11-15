@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Card from '../components/Card'
+
 class Popular extends Component {
   constructor() {
     super()
@@ -16,11 +18,24 @@ class Popular extends Component {
   }
 
   render() {
-    console.log(this.state.movie)
-    console.log(this.state.movie[0])
+    // console.log(this.state.movie)
+    // console.log(this.state.movie[0])
     return (
-      <div>
+      <div className="container">
         <h1>Popular</h1>
+        <div className="row">
+          {this.state.movie.map(element => {
+            return (
+              <Card 
+                key={element.id} 
+                movieTitle={element.title} 
+                movieOverview={element.overview} 
+                movieReleaseDate={element.release_date}
+                moviePosterPath={element.poster_path}
+              />
+            )
+          })}
+        </div>
       </div>
     )
   }
