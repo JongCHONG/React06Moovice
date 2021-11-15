@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { Link } from 'react-router-dom'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Home from './pages/Home'
 import Error404 from './pages/Error404'
@@ -14,6 +17,26 @@ class App extends Component {
     // 74ff4d5b18f55c304a239fadf716fe2f
     return (
       <BrowserRouter>
+        <ul className="nav">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">Home</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/weekly">Weekly</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/weeklybattle">Weekly Battle</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/popular">Popular</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/popularbattle">Popular Battle</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/favorites">Favorites</Link>
+          </li>
+        </ul>
 
         {/* Component qui représente la liste des routes */}
         <Switch>
