@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Card extends Component {
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const { movieTitle, movieOverview, movieReleaseDate, moviePosterPath } = this.props
     return (
       <div className="col-4">
