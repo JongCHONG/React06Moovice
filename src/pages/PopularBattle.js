@@ -7,8 +7,10 @@ class PopularBattle extends Component {
 
     this.state = {
       movie: [],
-      currentBattle: 0
+      currentBattle: 0,
+      arrayFavorites: []
     }
+
 
     this.handleOnClickMovie = this.handleOnClickMovie.bind(this)
   }
@@ -18,8 +20,18 @@ class PopularBattle extends Component {
       .then(response => response.json()) // on transforme la donnée reçue en JSON 
       .then(result => { this.setState({movie: result.results}) }) // on détaille l'action à exécuter sur ce JSON
   }
-  handleOnClickMovie(currentBattle) {
-    this.setState({currentBattle: currentBattle + 2})
+  handleOnClickMovie(currentBattle, id) {
+    const newArray = [...this.state.arrayFavorites, id]
+    this.setState({
+      currentBattle: currentBattle + 2,
+      arrayFavorites: newArray
+    })
+    localStorage.setItem("favorites", newArray)
+    console.log(localStorage)
+  }
+  handleClick() {
+    // localStorage.removeItem("favorites")
+    localStorage.clear()
   }
 
   render() {
@@ -31,24 +43,27 @@ class PopularBattle extends Component {
     return (
       <div className="container">
         <h1>Popular Battle</h1>
+        <button onClick={this.handleClick}>Remove localStorage item</button>
         <div className="row">
           {this.state.movie.length !== 0 && 
             <>
               <Card 
+                movieID={movie[currentBattle].id}
                 movieTitle={movie[currentBattle].title} 
                 movieOverview={movie[currentBattle].overview} 
                 movieReleaseDate={movie[currentBattle].release_date}
                 moviePosterPath={movie[currentBattle].poster_path}
                 currentBattle={currentBattle}
-                onClick={this.handleOnClickMovie}
+                onClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
               />
-              <Card 
+              <Card
+                movieID={movie[currentBattle].id}
                 movieTitle={movie[currentBattle + 1].title} 
                 movieOverview={movie[currentBattle + 1].overview} 
                 movieReleaseDate={movie[currentBattle + 1].release_date}
                 moviePosterPath={movie[currentBattle + 1].poster_path}
                 currentBattle={currentBattle}
-                onClick={this.handleOnClickMovie}
+                onClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
               />
             </>
           }
