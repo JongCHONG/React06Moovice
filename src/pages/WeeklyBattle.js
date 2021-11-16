@@ -33,10 +33,8 @@ class WeeklyBattle extends Component {
       arrayFavorites: newArray
     })
     localStorage.setItem("favorites", JSON.stringify(newArray))
-    // console.log(localStorage)
   }
   handleClick() {
-    // localStorage.removeItem("favorites")
     localStorage.clear()
   }
 
