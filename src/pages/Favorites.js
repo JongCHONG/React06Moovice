@@ -16,10 +16,10 @@ class Favorites extends Component {
   }
 
   componentDidMount() {
-    this.state.favIDs.forEach(element => {
+      this.state.favIDs.forEach(element => {
       fetch(this.getMovie(element))
         .then(response => response.json()) // on transforme la donnée reçue en JSON 
-        .then(result => { this.setState({movie: result}) }) // on détaille l'action à exécuter sur ce JSON
+        .then(result => this.setState({movie: [...this.state.movie, result]})) // on détaille l'action à exécuter sur ce JSON
     })
   }
 
