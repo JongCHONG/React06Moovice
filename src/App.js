@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { Link } from 'react-router-dom'
+import { justAnAlert } from './utils/network'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
@@ -13,9 +14,10 @@ import Popular from './pages/Popular'
 import PopularBattle from './pages/PopularBattle'
 import Favorites from './pages/Favorites'
 
+
 class App extends Component {
   render() {
-    
+    justAnAlert()
     return (
       <BrowserRouter>
         <ul className="nav">
