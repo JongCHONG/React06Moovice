@@ -26,8 +26,8 @@ class PopularBattle extends Component {
       currentBattle: currentBattle + 2,
       arrayFavorites: newArray
     })
-    localStorage.setItem("favorites", newArray)
-    console.log(localStorage)
+    localStorage.setItem("favorites", JSON.stringify(newArray))
+    // console.log(localStorage)
   }
   handleClick() {
     // localStorage.removeItem("favorites")
