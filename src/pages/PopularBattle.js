@@ -19,7 +19,9 @@ class PopularBattle extends Component {
 
   render() {
     const arrayMovie = this.state.movie.filter((element, index) => {return index < 2 })
-    console.log(arrayMovie)
+    if (this.state.movie.length !== 0) { //afficher le tableau asynchrone en attendant le retour du serveur
+      console.log(this.state.movie[0].title)
+    } 
     return (
       <div className="container">
         <h1>Popular Battle</h1>
