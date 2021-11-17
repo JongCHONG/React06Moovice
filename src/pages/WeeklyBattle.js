@@ -32,7 +32,7 @@ class WeeklyBattle extends Component {
       currentBattle: currentBattle + 2,
       arrayFavorites: newArray
     })
-    localStorage.setItem("favorites", JSON.stringify(newArray))
+    localStorage.setItem("weeklyfavorites", JSON.stringify(newArray))
   }
   handleClick() {
     localStorage.clear()
@@ -40,49 +40,58 @@ class WeeklyBattle extends Component {
 
   render() {
     // const arrayMovie = this.state.movie.filter((element, index) => {return index < 2 })
-    if (this.state.movie.length !== 0) { //afficher le tableau asynchrone en attendant le retour du serveur
-      // console.log(this.state.movie[0].title)
+    if (this.state.movie.length === 0) { 
+      return null // si le serveur n'est pas encore prêt, affiche rien
     } 
     const { currentBattle, movie } = this.state
     return (
       <div className="container">
         <h1>Weekly Battle</h1>
-        <button onClick={this.handleClick}>Remove localStorage item</button>
-        <div className="row">
-          {this.state.movie.length !== 0 && 
-            <>
-              <Card 
-                movieID={movie[currentBattle].id}
-                movieTitle={movie[currentBattle].title} 
-                movieOverview={movie[currentBattle].overview} 
-                movieReleaseDate={movie[currentBattle].release_date}
-                moviePosterPath={movie[currentBattle].poster_path}
-                currentBattle={currentBattle}
-                onClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
-              />
-              <Card
-                movieID={movie[currentBattle].id}
-                movieTitle={movie[currentBattle + 1].title} 
-                movieOverview={movie[currentBattle + 1].overview} 
-                movieReleaseDate={movie[currentBattle + 1].release_date}
-                moviePosterPath={movie[currentBattle + 1].poster_path}
-                currentBattle={currentBattle}
-                onClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
-              />
-            </>
-          }
-          {/* {arrayMovie.map(element => {
-            return (
-              <Card 
-                key={element.id} 
-                movieTitle={element.title} 
-                movieOverview={element.overview} 
-                movieReleaseDate={element.release_date}
-                moviePosterPath={element.poster_path}
-              />
-            )
-          })} */}
-        </div>
+        {currentBattle === 18 ? (
+          <>
+            C'est fini
+          </>
+        ) : (
+          <>
+            <button onClick={this.handleClick}>Remove localStorage item</button>
+            <div className="row">
+              {this.state.movie.length !== 0 && 
+                <>
+                  <Card 
+                    movieID={movie[currentBattle].id}
+                    movieTitle={movie[currentBattle].title} 
+                    movieOverview={movie[currentBattle].overview} 
+                    movieReleaseDate={movie[currentBattle].release_date}
+                    moviePosterPath={movie[currentBattle].poster_path}
+                    currentBattle={currentBattle}
+                    handleClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
+                    //changement de onClick à handleClick
+                  />
+                  <Card
+                    movieID={movie[currentBattle].id}
+                    movieTitle={movie[currentBattle + 1].title} 
+                    movieOverview={movie[currentBattle + 1].overview} 
+                    movieReleaseDate={movie[currentBattle + 1].release_date}
+                    moviePosterPath={movie[currentBattle + 1].poster_path}
+                    currentBattle={currentBattle}
+                    onClick={() => this.handleOnClickMovie(currentBattle, movie[currentBattle].id)}
+                  />
+                </>
+              }
+              {/* {arrayMovie.map(element => {
+                return (
+                  <Card 
+                    key={element.id} 
+                    movieTitle={element.title} 
+                    movieOverview={element.overview} 
+                    movieReleaseDate={element.release_date}
+                    moviePosterPath={element.poster_path}
+                  />
+                )
+              })} */}
+            </div>
+          </>
+        )}
       </div>
     )
   }

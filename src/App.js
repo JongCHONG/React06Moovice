@@ -47,7 +47,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/weekly" component={Weekly} />
           <Route path="/weeklybattle" component={WeeklyBattle} />
-          <Route path="/popular" component={Popular} />
+          <Route exact path="/popular" component={Popular} />
           <Route path="/popularbattle" component={PopularBattle} />
           <Route path="/favorites" component={Favorites} />
           <Route path="*" component={Error404} />

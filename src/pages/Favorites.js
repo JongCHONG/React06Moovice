@@ -26,6 +26,9 @@ class Favorites extends Component {
   getStorage() {
     const favorite = localStorage.getItem('favorites')
     const array = JSON.parse(favorite)
+    if (!array) { // si il ya pas de favorite ajouter
+      return []
+    }
     return array
   }
   getMovie(id){
